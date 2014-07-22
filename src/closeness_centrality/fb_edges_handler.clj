@@ -23,7 +23,7 @@
                       (client/get (str "https://graph.facebook.com/" (name current) "/friends"))) :body) :data)
               friend-ids (into [] (map (fn [data] (data :id)) friends))
               friend-ids-unvisited (remove visited (map (fn[x] (keyword x)) friend-ids))]
-              (recur
-              	(subvec (into queue friend-ids-unvisited) 1)
-              	(into visited friend-ids-unvisited)
-              	(into edges (map (fn [v] [(keyword current) (keyword v)]) friend-ids)))))))  
+          (recur
+            (subvec (into queue friend-ids-unvisited) 1)
+            (into visited friend-ids-unvisited)
+            (into edges (map (fn [v] [(keyword current) (keyword v)]) friend-ids)))))))  
